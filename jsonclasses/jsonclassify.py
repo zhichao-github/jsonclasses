@@ -756,6 +756,8 @@ def __setattr__(self: JObject, name: str, value: Any) -> None:
                     self.__original_setattr__(rname, olist)
                 else:
                     keys = []
+                    if getattr(self, rname) is not None:
+                        keys = [*getattr(self, rname)]
                     for item in value:
                         if item is not None:
                             keys.append(item._id)
